@@ -6,18 +6,11 @@ ENV JAVA_VERSION="19.25" \
     RENDER_TEMPLATE_VERSION="1.0.1" \
     ZOOKEEPER_VERSION="3.7.1"
 
-# ENV JAVA_VERSION="19.25" \
-#     GOSU_VERSION="1.14" \
-#     WAIT_FOR_PORT_VERSION="1.0.3" \
-#     RENDER_TEMPLATE_VERSION="1.0.3" \
-#     ZOOKEEPER_VERSION="3.7.1"
-
 ARG JAVA_EXTRA_SECURITY_DIR="/drycc/java/extra-security"
 
 COPY prebuildfs /
 
 RUN install-packages libnss-wrapper psmisc \
-  && export STACK_DOWNLOAD_URL="http://192.168.6.50:8000" \
   && install-stack java $JAVA_VERSION \
   && install-stack gosu $GOSU_VERSION \
   && install-stack wait-for-port $WAIT_FOR_PORT_VERSION \
